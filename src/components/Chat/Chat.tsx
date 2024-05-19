@@ -70,37 +70,40 @@ const Chat = (props: Props) => {
   const lastProcessedChatRef = useRef<number>(-1);
 
   useEffect(() => {
-    if (chatThread) {
-      setIsFetching(false);
+    const processChat = async () => {
+      if (chatThread) {
+        setIsFetching(false);
 
-      const lastChat = chatThread.chats[chatThread.chats.length - 1];
-      const lastProcessedIndex = lastProcessedChatRef.current;
+        const lastChat = chatThread.chats[chatThread.chats.length - 1];
+        const lastProcessedIndex = lastProcessedChatRef.current;
 
-      if (lastProcessedIndex !== chatThread.chats.length - 1) {
-        lastProcessedChatRef.current = chatThread.chats.length - 1;
+        if (lastProcessedIndex !== chatThread.chats.length - 1) {
+          lastProcessedChatRef.current = chatThread.chats.length - 1;
 
-        if (lastChat.mode === "search" && !lastChat.searchResults) {
-          handleSearch(chatThread.chats.length - 1)
-            .then((searchData) => {
+          if (lastChat.mode === "search" && !lastChat.searchResults) {
+            try {
+              const searchData = await handleSearch(chatThread.chats.length - 1);
               if (searchData) {
-                handleSearchAnswer(searchData);
+                await handleSearchAnswer(searchData);
               }
-            })
-            .catch((error) => {
+            } catch (error) {
               console.error("Error fetching or processing search results:", error);
               setError("Error fetching or processing search results");
               setErrorFunction(() => handleSearch.bind(null, chatThread.chats.length - 1));
-            });
-        }
+            }
+          }
 
-        if (lastChat.mode !== "search" && !lastChat.answer) {
-          handleAnswer(lastChat);
-        } else if (lastChat.answer) {
-          setIsLoading(false);
-          setIsCompleted(true);
+          if (lastChat.mode !== "search" && !lastChat.answer) {
+            await handleAnswer(lastChat);
+          } else if (lastChat.answer) {
+            setIsLoading(false);
+            setIsCompleted(true);
+          }
         }
       }
-    }
+    };
+
+    processChat();
   }, [chatThread?.chats.length]);
 
   useEffect(() => {
