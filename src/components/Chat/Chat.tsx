@@ -52,7 +52,6 @@ const Chat = (props: Props) => {
   const userId = userDetails.uid;
 
   const [isFetching, setIsFetching] = useState(true);
-
   const [isLoading, setIsLoading] = useState(true);
   const [isCompleted, setIsCompleted] = useState(false);
   const [isStreaming, setIsStreaming] = useState(false);
@@ -68,69 +67,19 @@ const Chat = (props: Props) => {
     }
   }, [chatThread?.chats]);
 
-  // Production Code
-  // const [lastProcessedIndex, setLastProcessedIndex] = useState(-1);
-
-  // useEffect(() => {
-  //   if (
-  //     chatThread &&
-  //     chatThread.chats.length > 0 &&
-  //     lastProcessedIndex !== chatThread.chats.length - 1
-  //   ) {
-  //     setIsFetching(false);
-  //     const newChatIndex = chatThread.chats.length - 1;
-  //     const newChat = chatThread.chats[newChatIndex];
-
-  //     if (newChat.mode === "search" && !newChat.searchResults) {
-  //       console.log("Triggering handleSearch");
-  //       handleSearch(chatThread.chats.length - 1)
-  //         .then((searchData) => {
-  //           if (searchData) {
-  //             handleSearchAnswer(searchData);
-  //           }
-  //         })
-  //         .catch((error) => {
-  //           console.error(
-  //             "Error fetching or processing search results:",
-  //             error
-  //           );
-  //           setError("Error fetching or processing search results");
-  //           setErrorFunction(() =>
-  //             handleSearch.bind(null, chatThread.chats.length - 1)
-  //           );
-  //         });
-  //     }
-
-  //     if (newChat.mode !== "search" && !newChat.answer) {
-  //       handleAnswer(newChat);
-  //     } else if (newChat.answer) {
-  //       setIsLoading(false);
-  //       setIsCompleted(true);
-  //     }
-
-  //     setLastProcessedIndex(newChatIndex);
-  //   }
-  // }, [chatThread?.chats.length]);
-
-  // Development Code
-  const lastProcessedChatRef = useRef<number>(0);
-  const chatIdCounterRef = useRef<number>(0);
+  const lastProcessedChatRef = useRef<number>(-1);
 
   useEffect(() => {
-    console.log("useEffect triggered");
     if (chatThread) {
       setIsFetching(false);
-      const lastChat = chatThread.chats[chatThread.chats.length - 1];
-      const lastChatId = chatIdCounterRef.current;
-      console.log("Last chat ID:", lastChatId);
-      console.log("Last processed chat ID:", lastProcessedChatRef.current);
-      console.log("Check", lastChatId !== lastProcessedChatRef.current);
 
-      if (lastChatId !== lastProcessedChatRef.current) {
-        console.log("Last chat ID changed:", lastChatId);
+      const lastChat = chatThread.chats[chatThread.chats.length - 1];
+      const lastProcessedIndex = lastProcessedChatRef.current;
+
+      if (lastProcessedIndex !== chatThread.chats.length - 1) {
+        lastProcessedChatRef.current = chatThread.chats.length - 1;
 
         if (lastChat.mode === "search" && !lastChat.searchResults) {
-          console.log("Triggering handleSearch");
           handleSearch(chatThread.chats.length - 1)
             .then((searchData) => {
               if (searchData) {
@@ -138,30 +87,19 @@ const Chat = (props: Props) => {
               }
             })
             .catch((error) => {
-              console.error(
-                "Error fetching or processing search results:",
-                error
-              );
+              console.error("Error fetching or processing search results:", error);
               setError("Error fetching or processing search results");
-              setErrorFunction(() =>
-                handleSearch.bind(null, chatThread.chats.length - 1)
-              );
+              setErrorFunction(() => handleSearch.bind(null, chatThread.chats.length - 1));
             });
         }
 
         if (lastChat.mode !== "search" && !lastChat.answer) {
-          console.log("Triggering handleAnswer");
           handleAnswer(lastChat);
         } else if (lastChat.answer) {
-          console.log("Setting isLoading to false");
           setIsLoading(false);
           setIsCompleted(true);
         }
-
-        lastProcessedChatRef.current = lastChatId;
       }
-
-      chatIdCounterRef.current++;
     }
   }, [chatThread?.chats.length]);
 
@@ -238,15 +176,12 @@ const Chat = (props: Props) => {
 
   const handleSearch = async (chatIndex: number) => {
     const chat = chatThread?.chats[chatIndex];
-    console.log("handleSearch called");
     setIsLoading(true);
     setIsCompleted(false);
     if (chat?.mode === "search") {
       try {
         const response = await fetch(
-          `/api/search?q=${encodeURIComponent(
-            chat?.query + " " + chat?.question
-          )}`
+          `/api/search?q=${encodeURIComponent(chat?.query + " " + chat?.question)}`
         );
         if (!response.ok) {
           console.error("Failed to fetch search results");
@@ -254,7 +189,6 @@ const Chat = (props: Props) => {
           setErrorFunction(() => handleSearch.bind(null, chatIndex));
         }
         const searchData = await response.json();
-        console.log("Search data:", searchData);
         dispatch(
           updateSearchResults({
             threadId: props.id,
@@ -279,8 +213,7 @@ const Chat = (props: Props) => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });
-      if (!response.ok)
-        throw new Error(`HTTP error! status: ${response.status}`);
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
       setError("");
       return response;
@@ -308,7 +241,6 @@ const Chat = (props: Props) => {
   };
 
   const handleAnswer = async (chat: ChatType, scrapedData?: string) => {
-    console.log("handleAnswer called");
     setIsLoading(true);
     setIsCompleted(false);
     const newController = new AbortController();
@@ -447,7 +379,6 @@ const Chat = (props: Props) => {
   };
 
   const handleRewrite = async () => {
-    console.log("handleRewrite called");
     setIsLoading(true);
     setIsCompleted(false);
     const newController = new AbortController();
@@ -612,12 +543,7 @@ const Chat = (props: Props) => {
     try {
       return await func(...args);
     } catch (error) {
-      console.error(
-        "Error in function: ",
-        func,
-        "Retry attempt: ",
-        retries + 1
-      );
+      console.error("Error in function: ", func, "Retry attempt: ", retries + 1);
       await new Promise((resolve) => setTimeout(resolve, 1000));
       return handleRetry(func, maxRetries, retries + 1, ...args);
     }
@@ -625,11 +551,9 @@ const Chat = (props: Props) => {
 
   const handleFork = async () => {
     if (chatThread) {
-      console.log("chatThread", chatThread);
       const newChatThreadId = nanoid(10);
 
       if (userId) {
-        console.log("Authenticated user");
         const historyRef = collection(db, "users", userId, "history");
         await setDoc(doc(historyRef, newChatThreadId), {
           chats: chatThread.chats,
