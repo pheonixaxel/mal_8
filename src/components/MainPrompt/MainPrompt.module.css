@@ -44,7 +44,7 @@
   width: 40%;
   flex-grow: 1;
   overflow: auto;
-  min-width: 512px;
+  min-width: 52px;
   margin-top: 24px;
   border-radius: 8px;
   padding: 8px;
@@ -56,7 +56,7 @@
   align-items: center;
 }
 .promptText {
-  width: 100%;
+  width: 98%;
   resize: none;
   overflow-y: auto;
   min-height: 56px;

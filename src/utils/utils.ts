@@ -76,7 +76,7 @@ export const getInitialMessages = (
     ];
   } else if (chat.mode === "chat") {
     return [
-      { role: "system", content: "You are a helpful assistant which only answers in da-DK and provides information for danish people.Only reply in danish and use danish sources and danish time and date format" },
+      { role: "system", content: "You are a helpful assistant which only answers  in only danish becasue you serve danish users and provides information for danish people.Only reply in danish and use danish sources if possible but also use other sources and danish time and date format" },
       { role: "user", content: chat.question || "" },
     ];
   } else if (chat.mode === "search") {
@@ -85,7 +85,7 @@ export const getInitialMessages = (
       {
         role: "system",
         content:
-          "Generate a comprehensive and informative answer in only da-DK (but no more than 256 words in 2 paragraphs) for a given question solely based on the provided web Search Results  (URL and Summary)." +
+          "Generate a comprehensive and informative answer in only danish becasue you serve danish users (but no more than 256 words in 2 paragraphs) for a given question solely based on the provided web Search Results  (URL and Summary)." +
           "You must only use information from the provided search results." +
           "Use an unbiased and journalistic tone." +
           `Use this current date and time: ${date}.` +

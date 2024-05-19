@@ -166,7 +166,7 @@ const Sidebar = () => {
                       onClick={() => setSelected("library")}
                     />
                   )}
-                  {selected === "settings" ? (
+{/*                   {selected === "settings" ? (
                     <Image
                       src={Setting}
                       alt="Settings"
@@ -179,7 +179,7 @@ const Sidebar = () => {
                       className={styles.icon}
                       onClick={() => setSelected("settings")}
                     />
-                  )}
+                  )} */}
                   {selected === "plugins" ? (
                     <Image
                       src={Plugin}
