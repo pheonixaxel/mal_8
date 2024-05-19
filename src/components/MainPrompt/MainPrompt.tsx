@@ -184,7 +184,7 @@ const MainPrompt = () => {
               url: url,
               name: file.name,
               size: file.size,
-              date: new Date().toLocaleDateString("en-GB"),
+              date: new Date().toLocaleDateString("da-DK"),
             };
 
             const libraryRef = collection(db, "users", userId, "library");

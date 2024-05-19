@@ -9,8 +9,8 @@ export const focusOptions = [
   {
     website: "All",
     icon: Web,
-    query: "",
-    description: "Search across the entire internet",
+    query: "only reply in da-DK",
+    description: "Search across the entire internet only reply in da-DK",
   },
   {
     website: "Academic",

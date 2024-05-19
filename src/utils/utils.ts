@@ -76,7 +76,7 @@ export const getInitialMessages = (
     ];
   } else if (chat.mode === "chat") {
     return [
-      { role: "system", content: "You are a helpful assistant." },
+      { role: "system", content: "You are a helpful assistant which only answers in da-DK and provides information for danish people.Only reply in danish and use danish sources and danish time and date format" },
       { role: "user", content: chat.question || "" },
     ];
   } else if (chat.mode === "search") {
@@ -85,14 +85,14 @@ export const getInitialMessages = (
       {
         role: "system",
         content:
-          "Generate a comprehensive and informative answer (but no more than 256 words in 2 paragraphs) for a given question solely based on the provided web Search Results (URL and Summary)." +
+          "Generate a comprehensive and informative answer in only da-DK (but no more than 256 words in 2 paragraphs) for a given question solely based on the provided web Search Results  (URL and Summary)." +
           "You must only use information from the provided search results." +
           "Use an unbiased and journalistic tone." +
           `Use this current date and time: ${date}.` +
           "Combine search results together into a coherent answer." +
           "Do not repeat text. Cite search results using [{number}] notation." +
           "Only cite the most relevant results that answer the question accurately." +
-          "If different results refer to different entities with the same name, write separate answers for each entity.",
+          "If different results refer to different entities with the same name, write separate answers for each entity."  ,
       },
       {
         role: "user",
@@ -170,7 +170,7 @@ export const getRelativeDateLabel = (dateStr: string) => {
 };
 
 export const formatDateLong = (): string =>
-  new Date().toLocaleDateString("en-US", {
+  new Date().toLocaleDateString("da-DK", {
     month: "long",
     day: "numeric",
     year: "numeric",

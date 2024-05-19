@@ -26,6 +26,7 @@
     "formidable": "^3.5.1",
     "framer-motion": "^11.0.15",
     "googleapis": "^134.0.0",
+    "groq-sdk": "^0.3.3",
     "katex": "^0.16.10",
     "nanoid": "^5.0.6",
     "next": "14.1.3",
