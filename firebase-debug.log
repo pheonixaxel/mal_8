@@ -1,0 +1,82 @@
+[debug] [2024-05-19T10:00:41.718Z] ----------------------------------------------------------------------
+[debug] [2024-05-19T10:00:41.720Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\bhupa\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-05-19T10:00:41.721Z] CLI Version:   13.9.0
+[debug] [2024-05-19T10:00:41.721Z] Platform:      win32
+[debug] [2024-05-19T10:00:41.721Z] Node Version:  v21.6.2
+[debug] [2024-05-19T10:00:41.721Z] Time:          Sun May 19 2024 12:00:41 GMT+0200 (Central European Summer Time)
+[debug] [2024-05-19T10:00:41.721Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-05-19T10:00:41.728Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-05-19T10:00:41.728Z] > authorizing via signed-in user (nytte.dk@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\nytte\mal_8
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-05-19T10:01:56.843Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2024-05-19T10:01:57.392Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2024-05-19T10:01:57.392Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project nytte-62364 (nytte) 
+[info] 
+=== Database Setup
+[info] i  database: ensuring required API firebasedatabase.googleapis.com is enabled... 
+[debug] [2024-05-19T10:01:59.282Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nytte-62364/services/firebasedatabase.googleapis.com [none]
+[debug] [2024-05-19T10:01:59.282Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nytte-62364/services/firebasedatabase.googleapis.com x-goog-quota-user=projects/nytte-62364
+[debug] [2024-05-19T10:02:00.229Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nytte-62364/services/firebasedatabase.googleapis.com 200
+[debug] [2024-05-19T10:02:00.230Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nytte-62364/services/firebasedatabase.googleapis.com [omitted]
+[warn] !  database: missing required API firebasedatabase.googleapis.com. Enabling now... 
+[debug] [2024-05-19T10:02:00.230Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/nytte-62364/services/firebasedatabase.googleapis.com:enable [none]
+[debug] [2024-05-19T10:02:00.230Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/nytte-62364/services/firebasedatabase.googleapis.com:enable x-goog-quota-user=projects/nytte-62364
+[debug] [2024-05-19T10:02:00.985Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/nytte-62364/services/firebasedatabase.googleapis.com:enable 200
+[debug] [2024-05-19T10:02:00.985Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/nytte-62364/services/firebasedatabase.googleapis.com:enable [omitted]
+[debug] [2024-05-19T10:02:10.996Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nytte-62364/services/firebasedatabase.googleapis.com [none]
+[debug] [2024-05-19T10:02:10.996Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nytte-62364/services/firebasedatabase.googleapis.com x-goog-quota-user=projects/nytte-62364
+[debug] [2024-05-19T10:02:11.897Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nytte-62364/services/firebasedatabase.googleapis.com 200
+[debug] [2024-05-19T10:02:11.897Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nytte-62364/services/firebasedatabase.googleapis.com [omitted]
+[info] +  database: required API firebasedatabase.googleapis.com is enabled 
+[info] 
+[debug] [2024-05-19T10:02:11.900Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nytte-62364 [none]
+[debug] [2024-05-19T10:02:12.166Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nytte-62364 200
+[debug] [2024-05-19T10:02:12.166Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nytte-62364 {"projectId":"nytte-62364","projectNumber":"165151914276","displayName":"nytte","name":"projects/nytte-62364","resources":{"hostingSite":"nytte-62364"},"state":"ACTIVE","etag":"1_affef6b1-47db-4bec-9817-06395bdf0000"}
+[debug] [2024-05-19T10:02:19.208Z] >>> [apiv2][query] POST https://firebasedatabase.googleapis.com/v1beta/projects/nytte-62364/locations/europe-west1/instances databaseId=nytte-62364-default-rtdb&validateOnly=true
+[debug] [2024-05-19T10:02:19.209Z] >>> [apiv2][body] POST https://firebasedatabase.googleapis.com/v1beta/projects/nytte-62364/locations/europe-west1/instances {"type":"default_database"}
+[debug] [2024-05-19T10:02:20.154Z] <<< [apiv2][status] POST https://firebasedatabase.googleapis.com/v1beta/projects/nytte-62364/locations/europe-west1/instances 200
+[debug] [2024-05-19T10:02:20.154Z] <<< [apiv2][body] POST https://firebasedatabase.googleapis.com/v1beta/projects/nytte-62364/locations/europe-west1/instances {"name":"projects/165151914276/locations/europe-west1/instances/nytte-62364-default-rtdb","project":"projects/165151914276","databaseUrl":"https://nytte-62364-default-rtdb.europe-west1.firebasedatabase.app","type":"DEFAULT_DATABASE","state":"ACTIVE"}
+[debug] [2024-05-19T10:02:20.155Z] >>> [apiv2][query] POST https://firebasedatabase.googleapis.com/v1beta/projects/nytte-62364/locations/europe-west1/instances databaseId=nytte-62364-default-rtdb
+[debug] [2024-05-19T10:02:20.155Z] >>> [apiv2][body] POST https://firebasedatabase.googleapis.com/v1beta/projects/nytte-62364/locations/europe-west1/instances {"type":"default_database"}
+[debug] [2024-05-19T10:02:20.883Z] <<< [apiv2][status] POST https://firebasedatabase.googleapis.com/v1beta/projects/nytte-62364/locations/europe-west1/instances 200
+[debug] [2024-05-19T10:02:20.883Z] <<< [apiv2][body] POST https://firebasedatabase.googleapis.com/v1beta/projects/nytte-62364/locations/europe-west1/instances {"name":"projects/165151914276/locations/europe-west1/instances/nytte-62364-default-rtdb","project":"projects/165151914276","databaseUrl":"https://nytte-62364-default-rtdb.europe-west1.firebasedatabase.app","type":"DEFAULT_DATABASE","state":"ACTIVE"}
+[info] 
+[info] Firebase Realtime Database Security Rules allow you to define how your data should be
+[info] structured and when your data can be read from and written to.
+[info] 
+[debug] [2024-05-19T10:02:33.741Z] >>> [apiv2][query] GET https://nytte-62364-default-rtdb.europe-west1.firebasedatabase.app/.settings/rules.json [none]
+[debug] [2024-05-19T10:02:34.782Z] <<< [apiv2][status] GET https://nytte-62364-default-rtdb.europe-west1.firebasedatabase.app/.settings/rules.json 200
+[debug] [2024-05-19T10:02:34.782Z] <<< [apiv2][body] GET https://nytte-62364-default-rtdb.europe-west1.firebasedatabase.app/.settings/rules.json [stream]
+[debug] [2024-05-19T10:02:34.849Z] Error: ENOENT: no such file or directory, open 'C:\nytte\mal_8\	'
+    at Object.writeFileSync (node:fs:2343:20)
+    at Object.createFileSync (C:\Users\bhupa\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\fs-extra\lib\ensure\file.js:63:6)
+    at Config.writeProjectFile (C:\Users\bhupa\AppData\Roaming\npm\node_modules\firebase-tools\lib\config.js:154:12)
+    at writeDBRules (C:\Users\bhupa\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\features\database.js:34:12)
+    at doSetup (C:\Users\bhupa\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\features\database.js:124:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async init (C:\Users\bhupa\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\index.js:39:9)
+[error] 
+[error] Error: An unexpected error has occurred.

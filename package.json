@@ -22,7 +22,7 @@
     "@vercel/og": "^0.6.2",
     "@vercel/speed-insights": "^1.0.10",
     "ai": "^3.0.12",
-    "firebase": "^10.9.0",
+    "firebase": "^10.12.0",
     "formidable": "^3.5.1",
     "framer-motion": "^11.0.15",
     "googleapis": "^134.0.0",
